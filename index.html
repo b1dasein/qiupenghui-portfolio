@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>邱鹏辉 | 作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Reset & Base ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Inter','Noto Sans SC','PingFang SC',sans-serif;
+    background: #0a0a0a;
+    color: #cccccc;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Navigation ===== */
+nav {
+    position: fixed; top:0; width:100%; z-index:1000;
+    padding: 24px 6%; display:flex; justify-content:space-between; align-items:center;
+    background: rgba(10,10,10,0.85); backdrop-filter:blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s;
+}
+nav.scrolled { padding: 16px 6%; background: rgba(10,10,10,0.95); }
+.logo {
+    font-size: 18px; font-weight: 600; color: #ffffff;
+    letter-spacing: 2px; text-decoration: none;
+}
+nav ul { display: flex; gap: 28px; list-style: none; }
+nav ul li a {
+    text-decoration: none; color: #666666;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.3s; position: relative;
+}
+nav ul li a:hover { color: #ffffff; }
+nav ul li a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1.5px; background: #ffffff;
+    transition: width 0.3s;
+}
+nav ul li a:hover::after { width: 100%; }
+
+/* ===== Page Sections ===== */
+.page-section { padding: 100px 6% 60px; }
+
+/* ===== Section Header (左竖线 + h2) ===== */
+.section-header {
+    margin-bottom: 40px; padding-left: 16px;
+    border-left: 4px solid rgba(255,255,255,0.5);
+}
+.section-header h2 {
+    font-size: 26px; font-weight: 600; color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* ===== Back Link ===== */
+.back-link {
+    display: inline-block; margin-bottom: 30px;
+    color: #777777; text-decoration: none;
+    font-size: 14px; transition: color 0.3s;
+}
+.back-link:hover { color: #ffffff; }
+.back-link::before { content: '← '; }
+
+/* ===== Hero / 个人信息 ===== */
+.hero {
+    max-width: 1000px; margin: 30px auto 50px;
+    display: flex; gap: 50px; align-items: flex-start;
+}
+.hero-avatar {
+    width: 180px; flex-shrink: 0;
+    border-radius: 8px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer; transition: all 0.3s;
+}
+.hero-avatar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+.hero-avatar img { width: 100%; display: block; }
+.hero-info { flex-grow: 1; }
+.hero-info h1 {
+    font-size: 32px; font-weight: 600; color: #ffffff;
+    letter-spacing: 2px; margin-bottom: 4px;
+}
+.hero-info .subtitle {
+    font-size: 15px; color: #888888; font-weight: 400;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 12px; margin-bottom: 12px;
+}
+.hero-info .style-tag {
+    font-size: 14px; color: #555555; margin-bottom: 14px;
+    font-style: italic; letter-spacing: 1px;
+}
+.hero-info .bio {
+    font-size: 14px; color: #999999; line-height: 1.9;
+    margin-bottom: 20px; max-width: 600px;
+}
+
+/* ===== Tags ===== */
+.tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px;
+}
+.tags span {
+    background: rgba(255,255,255,0.04);
+    padding: 3px 14px; border-radius: 3px;
+    font-size: 12px; color: #888888;
+    border: 1px solid rgba(255,255,255,0.06);
+    letter-spacing: 0.3px;
+}
+
+/* ===== Contact ===== */
+.contact-links {
+    display: flex; flex-wrap: wrap; gap: 10px;
+}
+.contact-links a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    font-size: 13px; color: #888888; text-decoration: none;
+    transition: all 0.2s;
+}
+.contact-links a:hover {
+    color: #ffffff; border-color: #ffffff;
+}
+
+/* ===== Cards Grid ===== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1000px; margin: 0 auto;
+}
+.card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.15);
+}
+.card-image {
+    width: 100%; height: 160px;
+    object-fit: cover; display: block;
+    background: rgba(255,255,255,0.03);
+}
+.card-body { padding: 24px; }
+.card-body .card-label {
+    font-size: 12px; font-weight: 600; color: #555555;
+    letter-spacing: 1px; margin-bottom: 6px;
+}
+.card-body h3 {
+    font-size: 18px; font-weight: 600; color: #ffffff;
+    margin-bottom: 6px;
+}
+.card-body .card-sub {
+    font-size: 13px; color: #888888; margin-bottom: 10px;
+    font-weight: 500;
+}
+.card-body .card-desc {
+    font-size: 14px; color: #999999; line-height: 1.7;
+    margin-bottom: 16px;
+}
+.card-body .card-tags {
+    display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px;
+}
+.card-body .card-tags span {
+    background: rgba(255,255,255,0.04);
+    padding: 2px 10px; border-radius: 3px;
+    font-size: 11px; color: #777777;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+.card-link {
+    display: inline-block; padding: 8px 18px;
+    background: rgba(255,255,255,0.04);
+    color: #cccccc; text-decoration: none;
+    border-radius: 6px; font-size: 13px; font-weight: 500;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+.card-link:hover {
+    background: #ffffff; color: #0a0a0a; border-color: #ffffff;
+}
+
+/* ===== Detail Intro ===== */
+.detail-intro {
+    max-width: 800px; margin-bottom: 40px;
+    font-size: 15px; color: #999999; line-height: 1.9;
+}
+.detail-section {
+    max-width: 900px; margin-bottom: 50px;
+}
+.detail-section h3 {
+    font-size: 18px; font-weight: 600; color: #ffffff;
+    margin-bottom: 16px;
+}
+.detail-section p {
+    font-size: 14px; color: #999999; line-height: 1.8;
+    margin-bottom: 14px;
+}
+.detail-section .meta-row {
+    display: flex; flex-wrap: wrap; gap: 24px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px; margin-bottom: 20px;
+}
+.detail-section .meta-item { font-size: 13px; color: #888888; }
+.detail-section .meta-item strong {
+    color: #aaaaaa; display: block;
+    font-size: 11px; letter-spacing: 1px; margin-bottom: 2px;
+}
+
+/* ===== Gallery ===== */
+.gallery {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; gap: 16px;
+}
+.gallery.cols-2 { grid-template-columns: 1fr 1fr; }
+.gallery-item {
+    border-radius: 8px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer; transition: all 0.3s;
+    background: rgba(255,255,255,0.02);
+    display: flex; align-items: center; justify-content: center;
+}
+.gallery-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.15);
+}
+.gallery-item img {
+    width: 100%; display: block;
+    transition: opacity 0.4s;
+}
+.gallery-item img.loading { opacity: 0; }
+.gallery-item img.loaded { opacity: 1; }
+
+/* ===== Footer ===== */
+.footer {
+    max-width: 1000px; margin: 100px auto 0;
+    padding: 30px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center; color: #555555;
+    font-size: 12px; letter-spacing: 1px;
+}
+
+/* ===== Lightbox ===== */
+.lightbox-overlay {
+    position: fixed; top:0; left:0;
+    width:100vw; height:100vh;
+    background: rgba(0,0,0,0.92);
+    z-index:99999; display: none;
+    align-items: center; justify-content: center;
+    cursor: zoom-out;
+    backdrop-filter: blur(8px);
+}
+.lightbox-overlay img {
+    max-width: 90vw; max-height: 90vh;
+    object-fit: contain; border-radius: 6px;
+}
+.lightbox-overlay .lb-close {
+    position: absolute; top: 30px; right: 40px;
+    color: #fff; font-size: 32px; cursor: pointer;
+    font-weight: 300; opacity: 0.4;
+    transition: opacity 0.3s;
+}
+.lightbox-overlay .lb-close:hover { opacity: 1; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .hero { flex-direction: column; align-items: center; text-align: center; }
+    .hero-info .bio { max-width: 100%; }
+    .contact-links { justify-content: center; }
+    .tags { justify-content: center; }
+    .gallery.cols-2 { grid-template-columns: 1fr; }
+    .hero-info h1 { font-size: 26px; }
+    nav ul { gap: 14px; }
+    nav ul li a { font-size: 11px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .detail-section .meta-row { flex-direction: column; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Lightbox ===== -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <span class="lb-close">&times;</span>
+    <img id="lightbox-img" src="" alt="查看大图">
+</div>
+
+<!-- ===== Nav ===== -->
+<nav>
+    <span class="logo">邱鹏辉</span>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ===== Home / 个人信息 ===== -->
+<div class="page-section" id="home">
+    <div class="hero">
+        <div class="hero-avatar" onclick="openLightbox('images/avatar/slide1_img1.jpg')">
+            <img src="images/avatar/slide1_img1.jpg" alt="邱鹏辉">
+        </div>
+        <div class="hero-info">
+            <h1>邱鹏辉</h1>
+            <div class="subtitle">厦门华厦学院 · 环境设计专业（2026届）</div>
+            <div class="style-tag">「风格杂，野路子」</div>
+            <div class="bio">
+                在校期间担任多次商业项目核心主创。曾作为受邀艺术家参与全球知名涂鸦艺术节
+                Meeting of Style (MOS) 及大型艺术市集。
+                熟悉 Midjourney、Lovart、即梦等 AI 平台，擅长 AI 技术生图。
+            </div>
+            <div class="tags">
+                <span>涂鸦</span><span>字体设计</span><span>手绘</span><span>海报</span>
+                <span>PS</span><span>AI</span><span>Procreate</span><span>CAD</span><span>SketchUp</span>
+                <span>Midjourney</span><span>Lovart</span><span>即梦</span>
+            </div>
+            <div class="contact-links">
+                <a href="tel:15006094883">📞 15006094883</a>
+                <a href="mailto:saire404@gmail.com">✉️ saire404@gmail.com</a>
+                <a href="#">💬 WeChat: Saire040404</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Projects 入口 ===== -->
+<div class="page-section" id="projects">
+    <div class="section-header"><h2>Projects</h2></div>
+    <div class="cards-grid">
+        <div class="card" onclick="scrollToGallery('graffiti')">
+            <img src="images/graffiti/slide3_img2.jpg" alt="涂鸦设计" class="card-image" loading="lazy">
+            <div class="card-body">
+                <div class="card-label">PART 1</div>
+                <h3>涂鸦设计</h3>
+                <p class="card-sub">Graffiti Design</p>
+                <p class="card-desc">个人涂鸦设计作品集，含电子稿设计及实体落地项目。</p>
+                <div class="card-tags"><span>涂鸦</span><span>Graffiti</span><span>墙绘</span></div>
+                <span class="card-link">查看作品 (9张)</span>
+            </div>
+        </div>
+        <div class="card" onclick="scrollToGallery('poster')">
+            <img src="images/poster/slide6_img13.jpg" alt="海报设计" class="card-image" loading="lazy">
+            <div class="card-body">
+                <div class="card-label">PART 2</div>
+                <h3>海报设计</h3>
+                <p class="card-sub">Poster Design</p>
+                <p class="card-desc">个人海报设计作品集，涵盖多种风格与主题的海报创作。</p>
+                <div class="card-tags"><span>海报</span><span>Poster</span><span>平面设计</span></div>
+                <span class="card-link">查看作品 (8张)</span>
+            </div>
+        </div>
+        <div class="card" onclick="scrollToGallery('drawing')">
+            <img src="images/drawing/slide9_img21.png" alt="商业手绘" class="card-image" loading="lazy">
+            <div class="card-body">
+                <div class="card-label">PART 3</div>
+                <h3>商业手绘</h3>
+                <p class="card-sub">Commercial Drawing</p>
+                <p class="card-desc">商业手绘作品集。</p>
+                <div class="card-tags"><span>手绘</span><span>Drawing</span><span>商业</span></div>
+                <span class="card-link">查看作品 (10张)</span>
+            </div>
+        </div>
+        <div class="card" onclick="scrollToGallery('print')">
+            <img src="images/print/slide11_img31.png" alt="印花设计" class="card-image" loading="lazy">
+            <div class="card-body">
+                <div class="card-label">PART 4</div>
+                <h3>印花设计</h3>
+                <p class="card-sub">Print Design</p>
+                <p class="card-desc">个人印花设计作品集。</p>
+                <div class="card-tags"><span>印花</span><span>Print</span><span>图案</span></div>
+                <span class="card-link">查看作品 (6张)</span>
+            </div>
+        </div>
+        <div class="card" onclick="scrollToGallery('spatial')">
+            <img src="images/spatial/slide13_img37.jpg" alt="空间设计" class="card-image" loading="lazy">
+            <div class="card-body">
+                <div class="card-label">PART 4</div>
+                <h3>空间设计</h3>
+                <p class="card-sub">Spatial Design</p>
+                <p class="card-desc">环境设计专业毕业设计作品。</p>
+                <div class="card-tags"><span>空间</span><span>Spatial</span><span>毕业设计</span></div>
+                <span class="card-link">查看作品 (10张)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Works / 作品展示 ===== -->
+<div class="page-section" id="works">
+    <div class="section-header"><h2>Works</h2></div>
+
+    <!-- 01 涂鸦 -->
+    <div class="detail-section" id="graffiti" style="scroll-margin-top:80px;">
+        <h3>涂鸦设计 <span style="font-weight:400;color:#555;font-size:14px;">/ Graffiti Design · PART 1</span></h3>
+        <p style="color:#666;font-size:13px;font-style:italic;margin-bottom:12px;">PS：项目均由电子稿设计后落地</p>
+        <div class="meta-row">
+            <div class="meta-item"><strong>类别</strong>涂鸦设计</div>
+            <div class="meta-item"><strong>描述</strong>个人涂鸦设计作品集</div>
+        </div>
+        <div class="gallery cols-2" id="gallery-graffiti"></div>
+    </div>
+
+    <!-- 02 海报 -->
+    <div class="detail-section" id="poster" style="scroll-margin-top:80px; margin-top:60px;">
+        <h3>海报设计 <span style="font-weight:400;color:#555;font-size:14px;">/ Poster Design · PART 2</span></h3>
+        <div class="meta-row">
+            <div class="meta-item"><strong>类别</strong>海报设计</div>
+            <div class="meta-item"><strong>描述</strong>个人海报设计作品集</div>
+        </div>
+        <div class="gallery cols-2" id="gallery-poster"></div>
+    </div>
+
+    <!-- 03 手绘 -->
+    <div class="detail-section" id="drawing" style="scroll-margin-top:80px; margin-top:60px;">
+        <h3>商业手绘 <span style="font-weight:400;color:#555;font-size:14px;">/ Commercial Drawing · PART 3</span></h3>
+        <div class="meta-row">
+            <div class="meta-item"><strong>类别</strong>商业手绘</div>
+            <div class="meta-item"><strong>描述</strong>商业手绘作品集</div>
+        </div>
+        <div class="gallery cols-2" id="gallery-drawing"></div>
+    </div>
+
+    <!-- 04 印花 -->
+    <div class="detail-section" id="print" style="scroll-margin-top:80px; margin-top:60px;">
+        <h3>印花设计 <span style="font-weight:400;color:#555;font-size:14px;">/ Print Design · PART 4</span></h3>
+        <div class="meta-row">
+            <div class="meta-item"><strong>类别</strong>印花设计</div>
+            <div class="meta-item"><strong>描述</strong>个人印花设计作品集</div>
+        </div>
+        <div class="gallery cols-2" id="gallery-print"></div>
+    </div>
+
+    <!-- 05 空间 -->
+    <div class="detail-section" id="spatial" style="scroll-margin-top:80px; margin-top:60px;">
+        <h3>空间设计 <span style="font-weight:400;color:#555;font-size:14px;">/ Spatial Design · PART 4</span></h3>
+        <p style="color:#666;font-size:13px;font-style:italic;margin-bottom:12px;">PS：我的毕业设计</p>
+        <div class="meta-row">
+            <div class="meta-item"><strong>类别</strong>空间设计</div>
+            <div class="meta-item"><strong>客户</strong>厦门华厦学院</div>
+            <div class="meta-item"><strong>年份</strong>2026</div>
+            <div class="meta-item"><strong>描述</strong>环境设计专业毕业设计作品</div>
+        </div>
+        <div class="gallery cols-2" id="gallery-spatial"></div>
+    </div>
+</div>
+
+<!-- ===== Contact ===== -->
+<div class="page-section" id="contact">
+    <div class="section-header"><h2>Contact</h2></div>
+    <div style="max-width:640px; margin:0 auto; display:grid; gap:16px;">
+        <div class="card" style="cursor:default;">
+            <div style="padding:20px 24px; display:flex; align-items:center; gap:20px;">
+                <div style="width:44px;height:44px;background:rgba(255,255,255,0.04);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#777;flex-shrink:0;">📞</div>
+                <div>
+                    <div style="font-size:13px;font-weight:600;color:#888;letter-spacing:1px;margin-bottom:2px;">电话</div>
+                    <a href="tel:15006094883" style="font-size:15px;color:#fff;text-decoration:none;">15006094883</a>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="cursor:default;">
+            <div style="padding:20px 24px; display:flex; align-items:center; gap:20px;">
+                <div style="width:44px;height:44px;background:rgba(255,255,255,0.04);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#777;flex-shrink:0;">✉️</div>
+                <div>
+                    <div style="font-size:13px;font-weight:600;color:#888;letter-spacing:1px;margin-bottom:2px;">邮箱</div>
+                    <a href="mailto:saire404@gmail.com" style="font-size:15px;color:#fff;text-decoration:none;">saire404@gmail.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="cursor:default;">
+            <div style="padding:20px 24px; display:flex; align-items:center; gap:20px;">
+                <div style="width:44px;height:44px;background:rgba(255,255,255,0.04);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#777;flex-shrink:0;">💬</div>
+                <div>
+                    <div style="font-size:13px;font-weight:600;color:#888;letter-spacing:1px;margin-bottom:2px;">微信</div>
+                    <span style="font-size:15px;color:#fff;">Saire040404</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">Copyright 2026 邱鹏辉 PORTFOLIO</div>
+</div>
+
+<script>
+// ===== Gallery Data =====
+const GALLERIES = {
+    graffiti: { dir:"graffiti", files:[
+        "slide3_img2.jpg","slide3_img3.jpg","slide3_img4.jpg","slide3_img5.jpg",
+        "slide4_img7.jpg","slide4_img10.png","slide4_img11.png","slide4_img6.png","slide4_img8.png"
+    ]},
+    poster: { dir:"poster", files:[
+        "slide6_img12.jpg","slide6_img13.jpg","slide6_img14.jpg","slide6_img15.jpg",
+        "slide7_img16.jpg","slide7_img17.jpg","slide7_img19.jpg","slide7_img18.png"
+    ]},
+    drawing: { dir:"drawing", files:[
+        "slide9_img25.jpg","slide9_img20.png","slide9_img21.png","slide9_img22.png","slide9_img23.png",
+        "slide9_img24.png","slide9_img26.png","slide9_img27.png","slide9_img28.png","slide9_img29.png"
+    ]},
+    print: { dir:"print", files:[
+        "slide11_img33.jpg","slide11_img30.png","slide11_img31.png","slide11_img32.png",
+        "slide11_img34.png","slide11_img35.png"
+    ]},
+    spatial: { dir:"spatial", files:[
+        "slide13_img37.jpg","slide13_img38.jpg","slide13_img39.jpg","slide13_img40.jpg","slide13_img42.jpg",
+        "slide13_img36.png","slide13_img41.png","slide13_img43.png","slide13_img44.png","slide13_img45.png"
+    ]}
+};
+const BASE = "images/";
+
+// ===== Scroll to gallery =====
+function scrollToGallery(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
+}
+
+// ===== Lightbox =====
+function openLightbox(src) {
+    document.getElementById("lightbox-img").src = src;
+    document.getElementById("lightbox").style.display = "flex";
+}
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+document.addEventListener("keydown", e => { if(e.key==="Escape") closeLightbox(); });
+
+// ===== Nav scroll =====
+window.addEventListener("scroll", () => {
+    document.querySelector("nav").classList.toggle("scrolled", window.scrollY > 50);
+});
+
+// ===== Render Galleries =====
+async function renderGalleries() {
+    for (const [id, data] of Object.entries(GALLERIES)) {
+        const container = document.getElementById("gallery-" + id);
+        if (!container) continue;
+
+        for (const file of data.files) {
+            const src = BASE + data.dir + "/" + file;
+            const item = document.createElement("div");
+            item.className = "gallery-item";
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = file;
+            img.loading = "lazy";
+            img.className = "loading";
+            img.onload = () => img.className = "loaded";
+            img.onclick = () => openLightbox(src);
+            item.appendChild(img);
+            container.appendChild(item);
+        }
+    }
+}
+
+renderGalleries();
+</script>
+</body>
+</html>
